@@ -1,0 +1,40 @@
+app:
+  name: 'sql-generator'
+  mode: dev   # supported types: dev, prod
+  environment: local  # supported types: local, aws
+  log_file: './sql_generator.log'
+
+
+
+
+chatbot:
+  settings_file: 'src/llms/sql_generator/model_settings.yml'
+  context_schema_file: 'sql_gen_context_schema.json'
+
+  langchain_tracing_enabled: true
+  langchain_log_project: 'sql-generator'
+
+
+aws:
+  logging:
+    enabled: true
+    api_url: 'https://sqs.us-east-1.amazonaws.com/946430313799/fincopilot_dev_logging_sqs_queue'
+    region: 'us-east-1'
+  
+  secrets:
+    name: 'api-keys-developer'
+    region: 'us-east-1'
+
+
+  bedrock:
+    region: 'us-east-1'
+
+
+
+
+dependent_apis:
+  table_selector:
+    api_url: 'https://hnz7sigis5.execute-api.us-east-1.amazonaws.com/test/configurations/metadata'
+
+  prompt_extractor:
+    api_url: 'https://qchxfxriu8.execute-api.us-east-1.amazonaws.com/dev/businessobjects/resolver'

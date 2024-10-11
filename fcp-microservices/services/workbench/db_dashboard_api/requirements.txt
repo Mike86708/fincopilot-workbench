@@ -1,0 +1,7 @@
+uvicorn[standard]
+fastapi
+magnum
+psycopg2-binary
+mangum
+requests
+python-dotenv

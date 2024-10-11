@@ -1,0 +1,20 @@
+input:
+    type
+    getFilters: bool
+    getData: bool   
+    defaultFilter: bool
+    period: int Optional
+    subsidiary id: int Optional
+    data_to_retrieve: str Required
+
+
+* 'balance_summary' or 'trial_balance" or "account_summary" or "income_statement"
+
+
+* if getting data, make sure subsidiary and period are there, if not raise except
+
+*if default is true, get Data with following filters: Period=current month, subsidiary id = first ID from filter result
+
+* if default is true, get Data must be false
+
+

@@ -1,0 +1,4 @@
+snowflake-sqlalchemy
+snowflake-connector-python
+sqlalchemy
+boto3

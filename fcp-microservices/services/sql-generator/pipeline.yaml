@@ -1,0 +1,109 @@
+trigger: none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  # Link the variable group that contains sensitive variables
+  - group: 'fincopilot_lambda'
+
+stages:
+  # - stage: CodeScan
+  #   jobs:
+  #     - job: SonarQubeAnalysis
+  #       displayName: 'SonarQube Code Analysis'
+  #       steps:
+  #         - task: UsePythonVersion@0
+  #           inputs:
+  #             versionSpec: '3.x'
+  #             addToPath: true
+          
+  #         # SonarQube tasks
+  #         - task: SonarQubePrepare@5
+  #           inputs:
+  #             SonarQube: 'FinCopilot-code-scan'
+  #             scannerMode: 'CLI'
+  #             configMode: 'manual'
+  #             cliProjectKey: 'DoorDash_FinCoPilot__KuberAI__DoorDash_FinCoPilot__KuberAI__AZDFb1oElKm9AqUgvjfp'
+  #             cliProjectName: 'DoorDash FinCoPilot (KuberAI)'
+  #             cliSources: 'fcp-microservices/services/sql-generator/src'
+
+  #         - task: SonarQubeAnalyze@5
+
+  #         - task: SonarQubePublish@5
+  #           inputs:
+  #             pollingTimeoutSec: '300'
+
+  - stage: BuildAndPush
+    # dependsOn: CodeScan
+    jobs:
+      - job: BuildDockerImage
+        displayName: 'Build and Push Docker Image'
+        steps:
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: '3.x'
+              addToPath: true
+          - script: |
+              python -m pip install --upgrade pip
+              pip install awscli
+            displayName: 'Install AWS CLI'
+          
+          - script: |
+              aws configure set aws_access_key_id $(AWS_ACCESS_KEY_ID)
+              aws configure set aws_secret_access_key $(AWS_SECRET_ACCESS_KEY)
+              aws configure set default.region $(awsRegion)
+            displayName: 'Configure AWS CLI'
+            env:
+              AWS_ACCESS_KEY_ID: $(AWS_ACCESS_KEY_ID)  # Use secrets configured in Azure DevOps
+              AWS_SECRET_ACCESS_KEY: $(AWS_SECRET_ACCESS_KEY)
+
+          - script: |
+              aws ecr get-login-password --region $(awsRegion) | docker login --username AWS --password-stdin $(awsAccountId).dkr.ecr.$(awsRegion).amazonaws.com
+            displayName: 'Login to AWS ECR'
+
+          - task: Docker@2
+            displayName: 'Build Docker Image'
+            inputs:
+              command: 'build'
+              repository: '$(awsAccountId).dkr.ecr.$(awsRegion).amazonaws.com/$(sql_gen_ecrRepository)'
+              dockerfile: 'fcp-microservices/services/sql-generator/Dockerfile'
+              tags: '$(dockerImageTag)'
+
+          - task: Docker@2
+            displayName: 'Push Docker Image to ECR'
+            inputs:
+              command: 'push'
+              repository: '$(awsAccountId).dkr.ecr.$(awsRegion).amazonaws.com/$(sql_gen_ecrRepository)'
+              tags: '$(dockerImageTag)'
+
+  - stage: Deploy
+    dependsOn: BuildAndPush
+    jobs:
+      - job: DeployToLambda
+        displayName: 'Deploy to Lambda'
+        steps:
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: '3.x'
+              addToPath: true
+          - script: |
+              python -m pip install --upgrade pip
+              pip install awscli
+            displayName: 'Install AWS CLI'
+          
+          - script: |
+              aws configure set aws_access_key_id $(AWS_ACCESS_KEY_ID)
+              aws configure set aws_secret_access_key $(AWS_SECRET_ACCESS_KEY)
+              aws configure set default.region $(awsRegion)
+            displayName: 'Configure AWS CLI'
+            env:
+              AWS_ACCESS_KEY_ID: $(AWS_ACCESS_KEY_ID)  # Use secrets configured in Azure DevOps
+              AWS_SECRET_ACCESS_KEY: $(AWS_SECRET_ACCESS_KEY)
+
+          - script: |
+              aws lambda update-function-code --function-name $(sqlGenLambdaFunctionName) --image-uri $(awsAccountId).dkr.ecr.$(awsRegion).amazonaws.com/$(sql_gen_ecrRepository):$(dockerImageTag)
+            displayName: 'Update Lambda Function with New Docker Image'
+            env:
+              AWS_ACCESS_KEY_ID: $(AWS_ACCESS_KEY_ID)
+              AWS_SECRET_ACCESS_KEY: $(AWS_SECRET_ACCESS_KEY)

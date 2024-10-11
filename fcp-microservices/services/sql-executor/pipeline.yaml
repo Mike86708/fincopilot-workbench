@@ -1,0 +1,92 @@
+trigger: none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  # Link the variable group that contains sensitive variables
+  - group: 'fincopilot_lambda'
+
+stages:
+  - stage: BuildAndPush
+    jobs:
+      - job: BuildDockerImage
+        displayName: 'Build and Push Docker Image'
+        steps:
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: '3.x'
+              addToPath: true
+          - script: |
+              python -m pip install --upgrade pip
+              pip install awscli
+            displayName: 'Install AWS CLI'
+          
+          - script: |
+              aws configure set aws_access_key_id $(AWS_ACCESS_KEY_ID)
+              aws configure set aws_secret_access_key $(AWS_SECRET_ACCESS_KEY)
+              aws configure set default.region $(awsRegion)
+            displayName: 'Configure AWS CLI'
+            env:
+              AWS_ACCESS_KEY_ID: $(AWS_ACCESS_KEY_ID)  # Use secrets configured in Azure DevOps
+              AWS_SECRET_ACCESS_KEY: $(AWS_SECRET_ACCESS_KEY)
+
+          - script: |
+              aws ecr get-login-password --region $(awsRegion) | docker login --username AWS --password-stdin $(awsAccountId).dkr.ecr.$(awsRegion).amazonaws.com
+            displayName: 'Login to AWS ECR'
+
+          - task: DownloadSecureFile@1
+            name: DownloadFormatConfigJson
+            inputs:
+              secureFile: 'data_formatting_config.json'
+
+          - script: |
+              # Copy the secure file to the src directory
+              cp $(DownloadFormatConfigJson.secureFilePath) fcp-microservices/services/sql-executor/src/data_formatting_config.json
+            displayName: 'Copy FormatConfig.json to src directory'
+
+          - task: Docker@2
+            displayName: 'Build Docker Image'
+            inputs:
+              command: 'build'
+              repository: '$(awsAccountId).dkr.ecr.$(awsRegion).amazonaws.com/$(dal_sf_ecrRepository)'
+              dockerfile: 'fcp-microservices/services/sql-executor/Dockerfile'
+              tags: '$(dockerImageTag)'
+
+          - task: Docker@2
+            displayName: 'Push Docker Image to ECR'
+            inputs:
+              command: 'push'
+              repository: '$(awsAccountId).dkr.ecr.$(awsRegion).amazonaws.com/$(dal_sf_ecrRepository)'
+              tags: '$(dockerImageTag)'
+
+  - stage: Deploy
+    dependsOn: BuildAndPush
+    jobs:
+      - job: DeployToLambda
+        displayName: 'Deploy to Lambda'
+        steps:
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: '3.x'
+              addToPath: true
+          - script: |
+              python -m pip install --upgrade pip
+              pip install awscli
+            displayName: 'Install AWS CLI'
+          
+          - script: |
+              aws configure set aws_access_key_id $(AWS_ACCESS_KEY_ID)
+              aws configure set aws_secret_access_key $(AWS_SECRET_ACCESS_KEY)
+              aws configure set default.region $(awsRegion)
+            displayName: 'Configure AWS CLI'
+            env:
+              AWS_ACCESS_KEY_ID: $(AWS_ACCESS_KEY_ID)  # Use secrets configured in Azure DevOps
+              AWS_SECRET_ACCESS_KEY: $(AWS_SECRET_ACCESS_KEY)
+
+          - script: |
+              aws lambda update-function-code --function-name $(dalSfLambdaFunctionName) --image-uri $(awsAccountId).dkr.ecr.$(awsRegion).amazonaws.com/$(dal_sf_ecrRepository):$(dockerImageTag)
+            displayName: 'Update Lambda Function with New Docker Image'
+            env:
+              AWS_ACCESS_KEY_ID: $(AWS_ACCESS_KEY_ID)
+              AWS_SECRET_ACCESS_KEY: $(AWS_SECRET_ACCESS_KEY)

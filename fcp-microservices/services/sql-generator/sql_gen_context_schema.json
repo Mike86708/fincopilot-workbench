@@ -1,0 +1,239 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "properties": {
+      "user_prompt": {
+        "type": "string"
+      },
+      "domain": {
+        "type": "string"
+      },
+      "subject_area": {
+        "type": "string"
+      },
+      "entities_extracted": {
+        "type": "object",
+        "properties": {
+          "customer": {
+            "type": "string"
+          },
+          "subsidiary": {
+            "type": "string"
+          },
+          "brand": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "customer",
+          "subsidiary",
+          "brand"
+        ]
+      },
+      "features_extracted": {
+        "type": "array",
+        "items": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "index_name": {
+                "type": "string"
+              },
+              "total_count": {
+                "type": "string"
+              },
+              "extracted_count": {
+                "type": "string"
+              },
+              "matched_on": {
+                "type": "string"
+              },
+              "matches": {
+                "type": "array",
+                "items": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "query_by_value": {
+                        "type": "string"
+                      },
+                      "lookup_value": {
+                        "type": "string"
+                      },
+                      "user_friendly_value": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "query_by_value",
+                      "lookup_value"
+                    ]
+                  }
+                ]
+              }
+            },
+            "required": [
+              "type",
+              "index_name",
+              "total_count",
+              "extracted_count",
+              "matched_on",
+              "matches"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "index_name": {
+                "type": "string"
+              },
+              "total_count": {
+                "type": "string"
+              },
+              "extracted_count": {
+                "type": "string"
+              },
+              "matched_on": {
+                "type": "string"
+              },
+              "matches": {
+                "type": "array",
+                "items": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "query_by_value": {
+                        "type": "string"
+                      },
+                      "lookup_value": {
+                        "type": "string"
+                      },
+                      "user_friendly_value": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "query_by_value",
+                      "lookup_value",
+                      "user_friendly_value"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "query_by_value": {
+                        "type": "string"
+                      },
+                      "lookup_value": {
+                        "type": "string"
+                      },
+                      "user_friendly_value": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "query_by_value",
+                      "lookup_value",
+                      "user_friendly_value"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "query_by_value": {
+                        "type": "string"
+                      },
+                      "lookup_value": {
+                        "type": "string"
+                      },
+                      "user_friendly_value": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "query_by_value",
+                      "lookup_value",
+                      "user_friendly_value"
+                    ]
+                  }
+                ]
+              }
+            },
+            "required": [
+              "type",
+              "index_name",
+              "total_count",
+              "extracted_count",
+              "matched_on",
+              "matches"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "index_name": {
+                "type": "string"
+              },
+              "total_count": {
+                "type": "string"
+              },
+              "extracted_count": {
+                "type": "string"
+              },
+              "matched_on": {
+                "type": "string"
+              },
+              "matches": {
+                "type": "array",
+                "items": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "query_by_value": {
+                        "type": "string"
+                      },
+                      "lookup_value": {
+                        "type": "string"
+                      },
+                      "user_friendly_value": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "query_by_value",
+                      "lookup_value",
+                      "user_friendly_value"
+                    ]
+                  }
+                ]
+              }
+            },
+            "required": [
+              "type",
+              "index_name",
+              "total_count",
+              "extracted_count",
+              "matched_on",
+              "matches"
+            ]
+          }
+        ]
+      }
+    },
+    "required": [
+      "user_prompt",
+      "domain",
+      "subject_area",
+      "entities_extracted",
+      "features_extracted"
+    ]
+  }

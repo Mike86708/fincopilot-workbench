@@ -1,0 +1,88 @@
+{
+  "Comment": "A description of my state machine",
+  "StartAt": "PromptProcessor",
+  "States": {
+    "PromptProcessor": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "OutputPath": "$.Payload",
+      "Parameters": {
+        "Payload.$": "$",
+        "FunctionName": "arn:aws:lambda:us-east-1:946430313799:function:test_prompt_processor:$LATEST"
+      },
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.AWSLambdaException",
+            "Lambda.SdkClientException",
+            "Lambda.TooManyRequestsException"
+          ],
+          "IntervalSeconds": 1,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ],
+      "Next": "SqlGenerator"
+    },
+    "SqlGenerator": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "OutputPath": "$.Payload",
+      "Parameters": {
+        "Payload.$": "$",
+        "FunctionName": "arn:aws:lambda:us-east-1:946430313799:function:test_sql_gen:$LATEST"
+      },
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.AWSLambdaException",
+            "Lambda.SdkClientException",
+            "Lambda.TooManyRequestsException"
+          ],
+          "IntervalSeconds": 1,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ],
+      "Next": "SqlExecutor"
+    },
+    "SqlExecutor": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "OutputPath": "$.Payload",
+      "Parameters": {
+        "FunctionName": "arn:aws:lambda:us-east-1:946430313799:function:fincopilot_dalsf_dev_autodeploy_lambda_function:$LATEST",
+        "Payload": {
+          "input": {
+            "query_string.$": "$.body",
+            "user_info": {
+              "username.$": "$$.Execution.Input.user_info.username",
+              "scope.$": "$$.Execution.Input.user_info.scope"
+            }
+          },
+          "session": {
+            "conversation_id.$": "$$.Execution.Input.session.conversation_id",
+            "prompt_id.$": "$$.Execution.Input.session.prompt_id",
+            "session_details.$": "$$.Execution.Input.session.session_details"
+          }
+        }
+      },
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.AWSLambdaException",
+            "Lambda.SdkClientException",
+            "Lambda.TooManyRequestsException"
+          ],
+          "IntervalSeconds": 1,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ],
+      "End": true
+    }
+  }
+}

@@ -1,0 +1,71 @@
+question
+List all invoices for brand Subway last month
+List all invoices that are due for DD-Australia
+List all overdue invoices for customer 49 Olo
+List all invoices for Alberstons for June
+List all outstanding invoices for Olo
+List all past due invoices for Olo
+List all closed invoices for customer Albertsons
+List all invoices with original amount 5400
+List all invoices with open amount 5432.17
+List all invoices with open amount greater than 5500 for customer Olo
+Give me all invoices for April 2024 with an openamount 4300. Please include the customer name.
+"Give me all invoices for 26 Broadway, 24th Floor, New York, NY 10004 for open amount 55 Note: should go against the open amount 55"
+Give me all customers whose total past due amount equals 5400
+Give me all customers whose total ar balance equals 5400
+Give me all merchants in Drive whose total outstanding balance is greater than 5400
+Give me all invoices with memo “Failed Payments” for Q1
+Give me all invoices with memo Failed Payments for Q1
+Give me all invoices for brand Subway with memo containing “Redcard Grocery” for Q1
+Give me all invoices with memo “Dual Billing”
+Give me all overdue invoices for customer “49 Olo” with a memo that contains “DDE Rebates”
+Give me all invoices with a memo that contains “ARSD
+Give me invoices linked to arsd-161099
+Give me invoices linked to ARSD-161099
+Give me invoices linked to ARSD# 161099
+Give me invoices linked to ARSD 161099
+Give me invoices linked to ARSD ticket 161099
+Give me invoices linked to dris-1321
+Give me invoices linked to DRIS-1321
+Give me invoices linked to DRIS # 1321
+Give me invoices linked to DRIS 1321
+Give me invoices linked to DRIS ticket 1321
+What is the AR balance for BU Drive
+Give me invoices for BU Drive that are 30 days past due
+Give me all open invoices for BU Drive
+Give me all Q1 invoices for BU Drive that are open
+Give me all invoices for Walgreens Grocery for BU Ads & Promos
+Give me all invoices for Albertsons for BU Drive
+Show me a summary of the key invoice metrics for BU Drive
+What is the AR balance for subsidiary Parcel
+What is the AR balance for DD US
+What is the AR balance for DDE
+Give me the key invoice metrics for subsidiary Australia
+List all open invoices for brand Subway for the US subsidiary
+Give me all the Alberstons invoices for DoorDash Inc & G&C
+List all invoices for dispatchbilling@olo.com. Include only the Canada subsidiary.
+List customers with Balances > 90 days and amount between 0.01 and $10
+What is the average time to close an invoice for brand Subway
+What was the average time to close invoices for customer 49 Olo in 2023
+What was the average time to close invoices by Subsidiary in 2024 vs. 2023
+What is the average time to close invoices for business unit Drive
+Give me an invoice metrics summary for customer 49 Olo
+Give me an invoice metrics summary for customer Albertsons
+Summarize the invoice metrics for business unit Drive
+List invoices for customer Papa John’s
+List invoices for customer Papa Johns in Mt Sterling
+List invoices for customer 164684 Papa Johns
+List invoices for customer dickeys barbeque
+List invoices for customer dickeys bbq
+Give me all overdue invoices for McDonalds in Drive
+List invoices for customer id 91213
+List invoices for Netsuite id 91213
+List all invoices for dispatchbilling@olo.com
+List all unpaid invoices for expensepayables@safeway.com
+List all invoices for electronic.banking@albertsons.com for last month
+List customers with email dispatchbilling@olo.com
+"List all invoices for 26 Broadway, 24th Floor, New York NY-10004 for the last month"
+"List all invoices for brand Subway for July 2023. Please include customer name, invoice number, date and amount"
+List all July invoices for brand Albertsons.
+"Give me all June 2023 invoices for brand ""STAN'S DONUTS & COFFEE"""
+Give me all the overdue invoices for brand “1-800 Flowers”

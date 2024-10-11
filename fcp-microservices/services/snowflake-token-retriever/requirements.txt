@@ -1,0 +1,6 @@
+snowflake-connector-python
+psycopg2
+urllib3==1.26.6
+boto3
+botocore
+pandas 
