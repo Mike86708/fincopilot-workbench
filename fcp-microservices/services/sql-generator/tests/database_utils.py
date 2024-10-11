@@ -3,16 +3,6 @@ from snowflake.connector.pandas_tools import write_pandas
 import pandas as pd
 from typing import List
 
- 
-DB_CONNECTION = {
-    'user': 'hemanth',
-    'password': 'hemanthsnowflake',
-    'account': 'rla01593',
-    'warehouse': 'COMPUTE_WH',
-    'database': 'FINCOPILOT_QA',
-    'role': 'DATA_ENGINEER_ROLE'
-}
-
 
 # Connect to Snowflake
 # Connection for the entire database

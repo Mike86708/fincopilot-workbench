@@ -50,10 +50,7 @@ class TableDetailsService():
    """
    def execute_query(self, sql_query):
         conn = snowflake.connector.connect(
-            user="0oafloefyca2uPtLI697",
-            account="rla01593",
-            password="Criticalriver@123",
-            warehouse="Compute_WH"
+
         )
         cur = conn.cursor()
         cur.execute(sql_query)

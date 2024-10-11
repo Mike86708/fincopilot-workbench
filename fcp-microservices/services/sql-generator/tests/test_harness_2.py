@@ -9,13 +9,7 @@ import threading
 
 run_date_time = datetime.now().strftime('%Y%m%d%H%M%S')
 
-# Snowflake connection parameters
-user = 'hemanth'
-password = 'hemanthsnowflake'
-account = 'rla01593'
-warehouse = 'COMPUTE_WH'
-database = 'FINCOPILOT_QA'
-schema = 'DEV_TESTING'
+
 
 # Specify the prompt_template_ids you want to process  2,5,10,11,12
 selected_template_ids = '9,10,11,13,16,17,20,21,27,30,31,33,44,45,46,47,50,52,53,56,59,61,64,85,87,89,92,94,103,108,121,156,167,177,183,195,207,214,220,221,235' # Time periods
