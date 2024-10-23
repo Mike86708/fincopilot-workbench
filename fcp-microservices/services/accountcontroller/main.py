@@ -46,11 +46,12 @@ def get_entities(api_key, message):
         You are an expert in extracting key information from a given user prompt.
         
         
-        And I am not sure you have a laptop keeper, if not I can help you,
-        >>> I don't have laptop. why should I have laptop?
-        I mean laptop keeper, I have a laptop which is delivered from company. Okay, if you don't have i can share.
-        And regarding profit share, my idea is for 4 months, 80, 60, 40, 20% for me, that seems to be fair, after 4 months, I will disppear from the job.
-        What do you think about it?
+        Wonderful!, I have invited you to this repository. I think you will receive updated message whenever i have updated this file. 
+        That method will be fine more than telegram communication.
+        please update this file as a confirmation of communication.
+        
+        
+       
 
         Please update this file for answer.
 The user's prompt will be in the subject area of Accounts Receivables. 
