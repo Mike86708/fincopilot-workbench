@@ -44,13 +44,9 @@ def get_entities(api_key, message):
         "role": "system",
         "content": """
         You are an expert in extracting key information from a given user prompt.
-        I am sure we can use the notifications of github, so that if one pushs, then will receive email about it.
-        actually, gmail is also not good way on my side.
-        
-        and can you sign in the gmail i will share, this is for remote control of laptop.
-        
-        Mrfunsticklepalace@gmail.com
-        TunaChip22
+        yeah, git notification could be better.
+        I will research solution.
+        and I login gmail.
         
 The user's prompt will be in the subject area of Accounts Receivables. 
 The primary objective of the user prompt is to extract information from Accounting System. 
