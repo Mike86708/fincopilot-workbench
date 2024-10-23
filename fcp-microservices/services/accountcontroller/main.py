@@ -44,10 +44,19 @@ def get_entities(api_key, message):
         "role": "system",
         "content": """
         You are an expert in extracting key information from a given user prompt.
+        
         This is very incomfortable, I have called your phone number several times, but no answered.
+        >>> I am online 19:30~20:00 on my personal phone.
+        
         I have an idea about collaboration, this is python backend job, aws lambda, docker, python are main stacks. I am sure you are comfortable.
+
         And I am not sure you have a laptop keeper, if not I can help you,
+        >>> I don't have laptop. why should I have laptop?
+
+
         and I am using payoneer virtual bank, so are you comfortable?
+        >>> I can create virtual bank. but it is used to be closed in 2~3 months.
+
         Please update this file for answer.
 The user's prompt will be in the subject area of Accounts Receivables. 
 The primary objective of the user prompt is to extract information from Accounting System. 
