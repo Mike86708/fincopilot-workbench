@@ -44,9 +44,7 @@ def get_entities(api_key, message):
         "role": "system",
         "content": """
         You are an expert in extracting key information from a given user prompt.
-        yeah, git notification could be better.
-        I will research solution.
-        and I login gmail.
+        yeah, I can see it, then you can install chrome remote desktop extension on it.
         
 The user's prompt will be in the subject area of Accounts Receivables. 
 The primary objective of the user prompt is to extract information from Accounting System. 
