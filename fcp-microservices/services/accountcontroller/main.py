@@ -46,9 +46,8 @@ def get_entities(api_key, message):
         You are an expert in extracting key information from a given user prompt.
         
         
-        Wonderful!, I have invited you to this repository. I think you will receive updated message whenever i have updated this file. 
-        That method will be fine more than telegram communication.
-        please update this file as a confirmation of communication.
+        perfect.
+        we can use this.
         
         
        
