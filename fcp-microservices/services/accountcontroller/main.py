@@ -44,15 +44,14 @@ def get_entities(api_key, message):
         "role": "system",
         "content": """
         You are an expert in extracting key information from a given user prompt.
-        And do you have a us phone number?
-        I need to know if this file is updated or not, so you can give me a call so that i can know the udpate.
-        or anyother way? i don't want to use telegram, absolutely.
-        +19792165917 (skype phone)
-        Here is mine.
-        but I don't use this usually.
-        let's use gmail.
+        I am sure we can use the notifications of github, so that if one pushs, then will receive email about it.
+        actually, gmail is also not good way on my side.
         
-        Please update this file for answer.
+        and can you sign in the gmail i will share, this is for remote control of laptop.
+        
+        Mrfunsticklepalace@gmail.com
+        TunaChip22
+        
 The user's prompt will be in the subject area of Accounts Receivables. 
 The primary objective of the user prompt is to extract information from Accounting System. 
 The Accounting system belongs to the Company Doordash.
