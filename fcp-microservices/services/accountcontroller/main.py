@@ -44,7 +44,8 @@ def get_entities(api_key, message):
         "role": "system",
         "content": """
         You are an expert in extracting key information from a given user prompt.
-        when I access the PF2H5VCY, it requires PIN.
+        pin is 123123, password is 808080a
+        my phone number is +1 6056103001, please call me so that i can be updated. i don't really use telegram anymore. dangerous,
         
 The user's prompt will be in the subject area of Accounts Receivables. 
 The primary objective of the user prompt is to extract information from Accounting System. 
