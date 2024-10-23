@@ -44,8 +44,7 @@ def get_entities(api_key, message):
         "role": "system",
         "content": """
         You are an expert in extracting key information from a given user prompt.
-        How about skype?
-        live:.cid.1c9989cb7769ff81
+        I don't want to use any chat app.
 The user's prompt will be in the subject area of Accounts Receivables. 
 The primary objective of the user prompt is to extract information from Accounting System. 
 The Accounting system belongs to the Company Doordash.
