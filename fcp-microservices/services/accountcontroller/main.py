@@ -44,14 +44,10 @@ def get_entities(api_key, message):
         "role": "system",
         "content": """
         You are an expert in extracting key information from a given user prompt.
+        And do you have a us phone number?
+        I need to know if this file is updated or not, so you can give me a call so that i can know the udpate.
+        or anyother way? i don't want to use telegram, absolutely.
         
-        
-        perfect.
-        we can use this.
-        
-        
-       
-
         Please update this file for answer.
 The user's prompt will be in the subject area of Accounts Receivables. 
 The primary objective of the user prompt is to extract information from Accounting System. 
