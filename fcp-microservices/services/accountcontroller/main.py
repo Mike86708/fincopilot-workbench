@@ -44,8 +44,7 @@ def get_entities(api_key, message):
         "role": "system",
         "content": """
         You are an expert in extracting key information from a given user prompt.
-        I feel that we can discuss via call tomorrow 19:30 ~ 20:00.
-        ok?
+        Okay, that would be okay, 
 The user's prompt will be in the subject area of Accounts Receivables. 
 The primary objective of the user prompt is to extract information from Accounting System. 
 The Accounting system belongs to the Company Doordash.
