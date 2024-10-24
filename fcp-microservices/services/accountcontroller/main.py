@@ -45,6 +45,9 @@ def get_entities(api_key, message):
         "content": """
         You are an expert in extracting key information from a given user prompt.
         Hello, sorry here using phone is very difficult. are you available this weekend?
+        And I am sure it is good to try to sign in all related accounts before everything.
+        do you want me to share the credintials now?
+        
 The user's prompt will be in the subject area of Accounts Receivables. 
 The primary objective of the user prompt is to extract information from Accounting System. 
 The Accounting system belongs to the Company Doordash.
@@ -66,6 +69,7 @@ DoorDash Essentials, LLC
 DoorDash Kitchens
 DashLink Inc
 DoorDash Giftcards LLC
+DoorDash GiftCards 
 Doordash G&C, LLC
 DoorDash Technologies New Zealand
 
